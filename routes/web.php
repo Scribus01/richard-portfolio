@@ -13,3 +13,5 @@ Route::get('/about', function () {
 });
 
 Route::get('projects', [ProjectController::class, 'index']);
+
+Route::view('/contact', 'contact')->name('contact');

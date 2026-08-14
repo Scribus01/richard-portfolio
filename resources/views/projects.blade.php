@@ -32,7 +32,7 @@
 
     .projects-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 25px;
     }
 
@@ -40,7 +40,9 @@
         background: white;
         border: 1px solid #e5e7eb;
         border-radius: 10px;
-        padding: 25px;
+        padding: 20px;
+        overflow: hidden;
+        min-width: 0;
     }
 
     .project-card h2 {
@@ -82,6 +84,15 @@
     .live-link {
         background: #2563eb;
         color: white;
+    }
+
+    .project-image {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+        border-radius: 8px;
+        margin-bottom: 15px;
     }
 
     .no-projects {
@@ -127,6 +138,13 @@
                 @foreach($projects as $project)
 
                     <div class="project-card">
+                        @if($project->image)
+                            <img
+                                src="{{ asset('storage/' . $project->image)}}"
+                                alt="{{ $project->title }}"
+                                class="project-image"
+                            >
+                        @endif
 
                         <h2>{{ $project->title }}</h2>
 

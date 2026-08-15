@@ -15,7 +15,7 @@ class ProjectSeeder extends Seeder
             'technologies' => 'Power BI, SQL, Data Analysis',
             'github_url' => 'https://github.com/Scribus01/bank-loan-analysis-powerbi-sql-2-RichardEkpadi-',
             'project_url' => null,
-            'image' => null,
+            'image' => 'projects/bank-loan.png',
         ]);
 
         Project::updateOrCreate([
@@ -24,7 +24,7 @@ class ProjectSeeder extends Seeder
             'technologies' => 'Python, Pandas, Data Analysis, NLP',
             'github_url' => 'https://github.com/Scribus01/Amazon-Customer-Sentiment-Analysis',
             'project_url' => null,
-            'image' => null,
+            'image' => 'projects/amazon-sentiment.png',
         ]);
 
         Project::updateOrCreate([
@@ -33,7 +33,7 @@ class ProjectSeeder extends Seeder
             'technologies' => 'Power BI, SQL, Data Analysis',
             'github_url' => 'https://github.com/Scribus01/E-commerce-Conversion-Funnel-Analysis-PowerBI-SQL',
             'project_url' => null,
-            'image' => null,
+            'image' => 'projects/ecommerce-funnel.png',
         ]);
 
         Project::updateOrCreate([
@@ -51,7 +51,7 @@ class ProjectSeeder extends Seeder
             'technologies' => 'Excel, Data Analysis',
             'github_url' => 'https://github.com/Scribus01/bank-customer-churn-analysis-excel',
             'project_url' => null,
-            'image' => null,
+            'image' => 'projects/bank-churn.png',
         ]);
 
         Project::updateOrCreate([
@@ -60,7 +60,7 @@ class ProjectSeeder extends Seeder
             'technologies' => 'QGIS, GIS, Spatial Data Analysis',
             'github_url' => 'https://github.com/Scribus01/GIS-Survey-Point-Mapping-QGIS',
             'project_url' => null,
-            'image' => null,
+            'image' => 'projects/gis-mapping.png',
         ]);
 
         Project::updateOrCreate([
@@ -69,7 +69,7 @@ class ProjectSeeder extends Seeder
             'technologies' => 'Python, Pandas, Excel, Data Analysis',
             'github_url' => 'https://github.com/Scribus01/supply-chain-survey-analysis',
             'project_url' => null,
-            'image' => null,
+            'image' => 'projects/supply-chain.png',
         ]);
 
         Project::updateOrCreate([
@@ -78,7 +78,7 @@ class ProjectSeeder extends Seeder
             'technologies' => 'Power BI, Data Analysis, Data Visualization',
             'github_url' => 'https://github.com/Scribus01/real-estate-market-trends-dashboard',
             'project_url' => null,
-            'image' => null,
+            'image' => 'projects/real-estate.png',
         ]);
 
         Project::updateOrCreate([

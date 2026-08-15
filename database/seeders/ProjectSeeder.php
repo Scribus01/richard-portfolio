@@ -9,6 +9,7 @@ class ProjectSeeder extends Seeder
 {
     public function run(): void
     {
+        project::query()->delete();
         Project::updateOrCreate([
             'title' => 'Bank Loan Analysis Dashboard',
             'description' => 'Interactive analysis of bank loan data exploring loan applications, approval patterns, customer characteristics, and financial performance.',

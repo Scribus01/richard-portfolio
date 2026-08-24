@@ -6,130 +6,258 @@
 
 <style>
     .projects-page {
-        padding: 80px 8%;
-        background: #f8fafc;
+        min-height: 100vh;
+        padding: 100px 7% 120px;
+        background:
+            radial-gradient(circle at 10% 10%, rgba(56, 189, 248, .08), transparent 30%),
+            radial-gradient(circle at 90% 20%, rgba(129, 140, 248, .08), transparent 30%),
+            #07111f;
+        color: #f8fafc;
+        overflow: hidden;
     }
 
     .projects-container {
-        max-width: 1100px;
+        max-width: 1200px;
         margin: auto;
     }
 
-    .projects-page h1 {
+    /* HEADER */
+
+    .projects-header {
         text-align: center;
-        font-size: 48px;
-        color: #111827;
+        max-width: 760px;
+        margin: 0 auto 65px;
+    }
+
+    .projects-label {
+        display: inline-block;
         margin-bottom: 15px;
+        color: #38bdf8;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+    }
+
+    .projects-page h1 {
+        margin: 0 0 18px;
+        font-size: clamp(42px, 6vw, 68px);
+        line-height: 1;
+        letter-spacing: -.05em;
+        font-weight: 800;
     }
 
     .projects-intro {
-        text-align: center;
-        max-width: 700px;
-        margin: 0 auto 50px;
-        color: #6b7280;
+        margin: 0 auto;
+        color: #94a3b8;
         font-size: 17px;
+        line-height: 1.8;
     }
+
+    /* GRID */
 
     .projects-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 25px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
     }
 
+    /* CARD */
+
     .project-card {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        padding: 20px;
-        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: column;
         min-width: 0;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.09);
+        border-radius: 20px;
+        background: rgba(255,255,255,.045);
+        backdrop-filter: blur(12px);
+        transition:
+            transform .3s ease,
+            border-color .3s ease,
+            box-shadow .3s ease;
+    }
+
+    .project-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(56,189,248,.35);
+        box-shadow: 0 25px 60px rgba(0,0,0,.28);
+    }
+
+    /* IMAGE */
+
+    .project-image-wrapper {
+        position: relative;
+        height: 210px;
+        overflow: hidden;
+        background: #0f1c2e;
+    }
+
+    .project-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform .5s ease;
+    }
+
+    .project-card:hover .project-image {
+        transform: scale(1.05);
+    }
+
+    .image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            transparent 45%,
+            rgba(7,17,31,.65)
+        );
+        pointer-events: none;
+    }
+
+    /* CONTENT */
+
+    .project-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 24px;
     }
 
     .project-card h2 {
-        color: #111827;
-        font-size: 22px;
-        margin-bottom: 12px;
+        margin: 0 0 12px;
+        color: #f8fafc;
+        font-size: 21px;
+        line-height: 1.3;
+        letter-spacing: -.02em;
     }
 
     .project-card p {
-        color: #6b7280;
-        margin-bottom: 15px;
+        margin: 0 0 18px;
+        color: #94a3b8;
+        font-size: 14px;
+        line-height: 1.7;
     }
 
+    /* TECHNOLOGIES */
+
     .technologies {
-        font-size: 14px;
-        color: #2563eb;
-        margin-bottom: 20px;
+        margin-bottom: 22px;
+        color: #38bdf8;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.6;
     }
+
+    /* LINKS */
 
     .project-links {
         display: flex;
         gap: 10px;
         flex-wrap: wrap;
+        margin-top: auto;
     }
 
     .project-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 9px 15px;
+        border-radius: 9px;
         text-decoration: none;
-        padding: 8px 14px;
-        border-radius: 5px;
-        font-size: 14px;
-        font-weight: bold;
+        font-size: 13px;
+        font-weight: 700;
+        transition: .25s ease;
     }
 
     .github-link {
-        background: #111827;
-        color: white;
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.10);
+        color: #f8fafc;
+    }
+
+    .github-link:hover {
+        background: rgba(255,255,255,.14);
+        transform: translateY(-2px);
     }
 
     .live-link {
-        background: #2563eb;
+        background: linear-gradient(135deg, #38bdf8, #6366f1);
         color: white;
     }
 
-    .project-image {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        display: block;
-        border-radius: 8px;
-        margin-bottom: 15px;
+    .live-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(56,189,248,.18);
     }
+
+    /* NO PROJECTS */
 
     .no-projects {
+        max-width: 600px;
+        margin: auto;
+        padding: 60px 30px;
         text-align: center;
-        color: #6b7280;
-        padding: 50px;
-        background: white;
-        border-radius: 10px;
+        border: 1px solid rgba(255,255,255,.09);
+        border-radius: 20px;
+        background: rgba(255,255,255,.04);
+        color: #94a3b8;
     }
 
-    @media (max-width: 900px) {
+    /* RESPONSIVE */
+
+    @media (max-width: 1000px) {
+
         .projects-grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
+
+        .projects-page {
+            padding: 75px 6% 90px;
+        }
+
         .projects-grid {
             grid-template-columns: 1fr;
         }
 
-        .projects-page h1 {
-            font-size: 38px;
+        .project-image-wrapper {
+            height: 220px;
         }
     }
 </style>
+
 
 <section class="projects-page">
 
     <div class="projects-container">
 
-        <h1>My Projects</h1>
+        <!-- HEADER -->
 
-        <p class="projects-intro">
-            Here are some of the projects I've worked on across
-            data analysis, programming, GIS, and web development.
-        </p>
+        <div class="projects-header">
+
+            <span class="projects-label">
+                Selected Work
+            </span>
+
+            <h1>
+                My Projects
+            </h1>
+
+            <p class="projects-intro">
+                A collection of projects across data analysis,
+                business intelligence, Python, GIS and web development.
+            </p>
+
+        </div>
+
+
+        <!-- PROJECTS -->
 
         @if($projects->count())
 
@@ -137,52 +265,79 @@
 
                 @foreach($projects as $project)
 
-                    <div class="project-card">
+                    <article class="project-card">
+
                         @if($project->image)
-                            <img
-                                src="{{ asset('storage/' . $project->image)}}"
-                                alt="{{ $project->title }}"
-                                class="project-image"
-                            >
-                        @endif
 
-                        <h2>{{ $project->title }}</h2>
+                            <div class="project-image-wrapper">
 
-                        <p>
-                            {{ $project->description }}
-                        </p>
+                                <img
+                                    src="{{ asset('storage/' . $project->image) }}"
+                                    alt="{{ $project->title }}"
+                                    class="project-image"
+                                >
 
-                        @if($project->technologies)
-                            <div class="technologies">
-                                {{ $project->technologies }}
+                                <div class="image-overlay"></div>
+
                             </div>
+
                         @endif
 
-                        <div class="project-links">
 
-                            @if($project->github_url)
-                                <a
-                                    href="{{ $project->github_url }}"
-                                    target="_blank"
-                                    class="github-link"
-                                >
-                                    GitHub
-                                </a>
+                        <div class="project-content">
+
+                            <h2>
+                                {{ $project->title }}
+                            </h2>
+
+                            <p>
+                                {{ $project->description }}
+                            </p>
+
+
+                            @if($project->technologies)
+
+                                <div class="technologies">
+                                    {{ $project->technologies }}
+                                </div>
+
                             @endif
 
-                            @if($project->project_url)
-                                <a
-                                    href="{{ $project->project_url }}"
-                                    target="_blank"
-                                    class="live-link"
-                                >
-                                    Live Project
-                                </a>
-                            @endif
+
+                            <div class="project-links">
+
+                                @if($project->github_url)
+
+                                    <a
+                                        href="{{ $project->github_url }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="github-link"
+                                    >
+                                        View on GitHub →
+                                    </a>
+
+                                @endif
+
+
+                                @if($project->project_url)
+
+                                    <a
+                                        href="{{ $project->project_url }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="live-link"
+                                    >
+                                        Live Project →
+                                    </a>
+
+                                @endif
+
+                            </div>
 
                         </div>
 
-                    </div>
+                    </article>
 
                 @endforeach
 
@@ -191,9 +346,11 @@
         @else
 
             <div class="no-projects">
+
                 <p>
                     No projects have been added yet.
                 </p>
+
             </div>
 
         @endif

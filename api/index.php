@@ -21,4 +21,22 @@ $env = [
 ];
 foreach ($env as $k => $v) { putenv("$k=$v"); $_ENV[$k] = $v; $_SERVER[$k] = $v; }
 
+   // Serve static files (images, css, js) from /public
+   $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+   $publicDir = realpath(__DIR__ . '/../public');
+   $file = realpath($publicDir . $path);
+   $types = [
+       'png' => 'image/png', 'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg',
+       'gif' => 'image/gif', 'svg' => 'image/svg+xml', 'webp' => 'image/webp',
+       'ico' => 'image/x-icon', 'css' => 'text/css', 'js' => 'application/javascript',
+   ];
+   if ($file && is_file($file) && strpos($file, $publicDir . DIRECTORY_SEPARATOR) === 0) {
+       $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+       if (isset($types[$ext])) {
+           header('Content-Type: ' . $types[$ext]);
+           header('Cache-Control: public, max-age=86400');
+           readfile($file);
+           exit;
+       }
+   }
 require __DIR__ . '/../public/index.php';

@@ -1,4 +1,42 @@
 <?php
+// Temporary: lists files Vercel has in /public (remove later)
+if (strpos($_SERVER['REQUEST_URI'], '/debug-files') === 0) {
+    header('Content-Type: text/plain');
+    $p = __DIR__ . '/../public';
+    echo "Looking in: " . realpath($p) . "\n\n";
+    if (is_dir($p)) {
+        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($p, FilesystemIterator::SKIP_DOTS)) as $f) {
+            echo $f->getPathname() . "\n";
+        }
+    } else { echo "public folder NOT FOUND"; }
+    exit;
+}
+
+// Serve static files (images, css, js)
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$publicDir = realpath(__DIR__ . '/../public');
+$file = realpath($publicDir . $path);
+
+// Mimic "php artisan storage:link": /storage/... -> storage/app/public/...
+if ((!$file || !is_file($file)) && strpos($path, '/storage/') === 0) {
+    $publicDir = realpath(__DIR__ . '/../storage/app/public');
+    $file = realpath($publicDir . substr($path, strlen('/storage')));
+}
+
+$types = [
+    'png' => 'image/png', 'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg',
+    'gif' => 'image/gif', 'svg' => 'image/svg+xml', 'webp' => 'image/webp',
+    'ico' => 'image/x-icon', 'css' => 'text/css', 'js' => 'application/javascript',
+];
+if ($file && $publicDir && is_file($file) && strpos($file, $publicDir . DIRECTORY_SEPARATOR) === 0) {
+    $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+    if (isset($types[$ext])) {
+        header('Content-Type: ' . $types[$ext]);
+        header('Cache-Control: public, max-age=86400');
+        readfile($file);
+        exit;
+    }
+}
 
 // Point Laravel's writable folders to /tmp
 foreach ([
@@ -21,22 +59,4 @@ $env = [
 ];
 foreach ($env as $k => $v) { putenv("$k=$v"); $_ENV[$k] = $v; $_SERVER[$k] = $v; }
 
-   // Serve static files (images, css, js) from /public
-   $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-   $publicDir = realpath(__DIR__ . '/../public');
-   $file = realpath($publicDir . $path);
-   $types = [
-       'png' => 'image/png', 'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg',
-       'gif' => 'image/gif', 'svg' => 'image/svg+xml', 'webp' => 'image/webp',
-       'ico' => 'image/x-icon', 'css' => 'text/css', 'js' => 'application/javascript',
-   ];
-   if ($file && is_file($file) && strpos($file, $publicDir . DIRECTORY_SEPARATOR) === 0) {
-       $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-       if (isset($types[$ext])) {
-           header('Content-Type: ' . $types[$ext]);
-           header('Cache-Control: public, max-age=86400');
-           readfile($file);
-           exit;
-       }
-   }
 require __DIR__ . '/../public/index.php';

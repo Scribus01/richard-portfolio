@@ -1,11 +1,5 @@
 <?php
 
-// Show any fatal error that would otherwise be hidden
-register_shutdown_function(function () {
-    $e = error_get_last();
-    if ($e) { echo '<pre>' . print_r($e, true) . '</pre>'; }
-});
-
 // Point Laravel's writable folders to /tmp
 foreach ([
     '/tmp/storage/framework/cache/data',

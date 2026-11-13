@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', '1');
-error_reporting(E_ALL);
 
 // Show any fatal error that would otherwise be hidden
 register_shutdown_function(function () {

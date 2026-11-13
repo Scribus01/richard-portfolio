@@ -27,6 +27,17 @@
         margin-bottom: 70px;
     }
 
+    .profile-photo {
+        display: block;
+        width: 180px;
+        height: 180px;
+        margin-bottom: 30px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #38bdf8;
+        box-shadow: 0 0 0 6px rgba(56, 189, 248, .12);
+    }
+
     .about-label {
         display: inline-block;
         margin-bottom: 18px;
@@ -58,6 +69,10 @@
         color: #94a3b8;
         font-size: 19px;
         line-height: 1.8;
+    }
+
+    .about-actions {
+        margin-top: 30px;
     }
 
     /* INTRO CARDS */
@@ -261,6 +276,11 @@
             padding: 75px 6% 90px;
         }
 
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+        }
+
         .skill-list {
             grid-template-columns: 1fr;
         }
@@ -284,6 +304,8 @@
 
         <div class="about-header">
 
+            <img src="/storage/profile.jpeg" alt="Richard Ekpadi" class="profile-photo">
+
             <span class="about-label">
                 About Me
             </span>
@@ -298,6 +320,12 @@
                 interested in technology, programming, data, and solving
                 real-world problems.
             </p>
+
+            <div class="about-actions">
+                <a href="/storage/resume.pdf" target="_blank" class="cta-button">
+                    Download Résumé
+                </a>
+            </div>
 
         </div>
 

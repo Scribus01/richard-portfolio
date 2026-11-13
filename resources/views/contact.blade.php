@@ -292,13 +292,13 @@
 
                 <div class="contact-info">
 
-                    <a href="mailto:ekapdirichard5@gmail.com">
+                    <a href="mailto:ekpadirichard5@gmail.com">
 
                         <span class="contact-icon">
                             @
                         </span>
 
-                        ekapdirichard5@gmail.com
+                        ekpadirichard5@gmail.com
 
                     </a>
 
@@ -353,7 +353,7 @@
 
                 <form
                     class="contact-form"
-                    action="mailto:ekapdirichard5@gmail.com"
+                    action="mailto:ekpadirichard5@gmail.com"
                     method="POST"
                     enctype="text/plain"
                 >

@@ -14,7 +14,7 @@ if ((!$file || !is_file($file)) && strpos($path, '/storage/') === 0) {
 $types = [
     'png' => 'image/png', 'jpg' => 'image/jpeg', 'jpeg' => 'image/jpeg',
     'gif' => 'image/gif', 'svg' => 'image/svg+xml', 'webp' => 'image/webp',
-    'ico' => 'image/x-icon', 'css' => 'text/css', 'js' => 'application/javascript',
+    'ico' => 'image/x-icon', 'css' => 'text/css', 'js' => 'application/javascript', 'pdf' => 'application/pdf',
 ];
 if ($file && $publicDir && is_file($file) && strpos($file, $publicDir . DIRECTORY_SEPARATOR) === 0) {
     $ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));

@@ -1,16 +1,4 @@
 <?php
-// Temporary: lists files Vercel has in /public (remove later)
-if (strpos($_SERVER['REQUEST_URI'], '/debug-files') === 0) {
-    header('Content-Type: text/plain');
-    $p = __DIR__ . '/../public';
-    echo "Looking in: " . realpath($p) . "\n\n";
-    if (is_dir($p)) {
-        foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($p, FilesystemIterator::SKIP_DOTS)) as $f) {
-            echo $f->getPathname() . "\n";
-        }
-    } else { echo "public folder NOT FOUND"; }
-    exit;
-}
 
 // Serve static files (images, css, js)
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

@@ -351,14 +351,18 @@
                     Send a Message
                 </h2>
 
-                <form
-                    class="contact-form"
-                    action="mailto:ekpadirichard5@gmail.com"
-                    method="POST"
-                    enctype="text/plain"
-                    >
+                <form class="contact-form" action="{{ route('contact.store') }}" method="POST">
+                    @csrf
+                    
+                    @if (session('success'))
+                       <div class="contact-note">{{ session('success') }}</div>
+                    @endif
+                    
+                    @if ($errors->any())
+                       <div class="contact-note" style="border-color:#f87171;">Please check your details and try again.</div>
+                    @endif
 
-                    <div class="form-group">
+                       <div class="form-group">
 
                         <label for="name">
                             Your Name

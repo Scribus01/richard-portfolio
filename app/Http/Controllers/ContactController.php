@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -16,6 +17,20 @@ class ContactController extends Controller
         ]);
 
         ContactMessage::create($data);
+
+        try {
+            $body = "Name: {$data['name']}\n"
+                  . "Email: {$data['email']}\n\n"
+                  . $data['message'];
+
+            Mail::raw($body, function ($mail) use ($data) {
+                $mail->to('ekpadirichard5@gmail.com')
+                     ->replyTo($data['email'], $data['name'])
+                     ->subject('New message from your portfolio');
+            });
+        } catch (\Throwable $e) {
+            report($e);
+        }
 
         return back()->with('success', 'Thank you! Your message has been sent.');
     }

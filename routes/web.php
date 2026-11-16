@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\ContactController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,5 @@ Route::get('/about', function () {
 Route::get('projects', [ProjectController::class, 'index']);
 
 Route::view('/contact', 'contact')->name('contact');
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

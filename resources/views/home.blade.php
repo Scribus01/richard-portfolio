@@ -61,6 +61,23 @@
         max-width: 850px;
     }
 
+    /* HERO PICTURE */
+
+    .hero-photo {
+        position: absolute;
+        right: 8%;
+        top: 14%;
+        z-index: 2;
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid var(--accent);
+        box-shadow:
+            0 0 0 8px rgba(56, 189, 248, .12),
+            0 20px 50px rgba(0, 0, 0, .35);
+    }
+
     .availability {
         display: inline-flex;
         align-items: center;
@@ -322,6 +339,21 @@
 
     @media (max-width: 1000px) {
 
+        .hero {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .hero-photo {
+            position: relative;
+            right: auto;
+            top: auto;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 28px;
+        }
+
         .hero-stats {
             display: none;
         }
@@ -374,6 +406,8 @@
     <!-- HERO -->
 
     <section class="hero">
+
+        <img src="/storage/profile.jpeg" alt="Richard Ekpadi" class="hero-photo">
 
         <div class="hero-content">
 
